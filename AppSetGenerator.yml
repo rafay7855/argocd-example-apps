@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: many-guestbooks
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/rafay7855/argocd-example-apps.git
+      revision: appset
+      directories:
+      - path: /*
+  template:
+    metadata:
+      name: '{{path.basename}}' 
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/rafay7855/argocd-example-apps.git
+        targetRevision: appset
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
