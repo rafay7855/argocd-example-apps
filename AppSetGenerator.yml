@@ -8,7 +8,7 @@ spec:
       repoURL: https://github.com/rafay7855/argocd-example-apps.git
       revision: appset
       directories:
-      - path: /*
+      - path: gbooks/*
   template:
     metadata:
       name: '{{path.basename}}' 
@@ -20,4 +20,4 @@ spec:
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: default
