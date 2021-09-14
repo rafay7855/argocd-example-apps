@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/rafay7855/argocd-example-apps.git
+      repoURL: https://github.com/rafay7855/argocd-example-apps
       revision: appset
       directories:
       - path: gbooks/*
@@ -14,8 +14,12 @@ spec:
       name: '{{path.basename}}' 
     spec:
       project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
       source:
-        repoURL: https://github.com/rafay7855/argocd-example-apps.git
+        repoURL: https://github.com/rafay7855/argocd-example-apps
         targetRevision: appset
         path: '{{path}}'
       destination:
